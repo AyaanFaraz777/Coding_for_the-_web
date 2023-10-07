@@ -1,0 +1,77 @@
+/* BODY AND SECTIONS */
+/* ----------------------------------------------------- */
+
+/* All body and section styling available here (except for the fonts, which are declared in the defaults+fonts.css). One property has already been declared on the body and section element, respectively */
+
+
+/* SOME CSS PROPERTIES YOU COULD USE:
+{
+    margin: 20px;
+    margin: 20%;
+    margin-left: ;
+    margin-right: ;
+
+    padding-left: 20px;
+    padding-right: 20%;
+    padding: 0 50px;
+    padding: 10px 30px 50px 70px;
+
+    border-width: ;
+    border-style: ;
+    border-color: ;
+    border: ;
+
+    font-size: ;
+    line-height: ;
+    letter-spacing: ;
+
+    text-transform: lowercase;
+    text-indent 20px;
+    columns: 2;
+    column-gap:;
+
+    text-decoration:;
+    text-decoration-line: ;
+    text-decoration-thickness: ;
+    text-underline-offset: ;}
+    
+    list-style: ;
+}
+
+*/
+
+
+body {
+    padding: 40px 10%;
+}
+h1{
+    text-align: center;
+    font-size:60px;
+}
+selection:first p{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+selection:hover:first{
+    background-color: red;
+}
+body div {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 50px;
+    padding-top: 20px;
+}
+selection:second{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+selection:hover:second{
+    background-color: aqua;
+}
+Selection:third{
+    background-color: cyan;
+    margin-top: 50px;
+    padding-bottom: 30px;
+}
+
+

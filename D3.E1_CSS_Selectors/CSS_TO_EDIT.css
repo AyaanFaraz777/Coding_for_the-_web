@@ -1,0 +1,166 @@
+/* BODY AND SECTIONS */
+/* ----------------------------------------------------- */
+
+/* All body and section styling available here (except for the fonts, which are declared in the defaults+fonts.css). One property has already been declared on the body and section element, respectively */
+
+
+/* SOME CSS PROPERTIES YOU COULD USE:
+{
+    margin: 20px;
+    margin: 20%;
+
+    margin-left: ;
+    margin-right: ;
+
+    padding-left: 20px;
+    padding-right: 20%;
+    padding: 0 50px;
+    padding: 10px 30px 50px 70px;
+
+    border-width: ;
+    border-style: ;
+    border-color: ;
+    border: ;
+
+    font-size: ;
+    line-height: ;
+    letter-spacing: ;
+
+    text-transform: lowercase;
+    text-indent 20px;
+    columns: 2;
+    column-gap:;
+
+    text-decoration:;
+    text-decoration-line: ;
+    text-decoration-thickness: ;
+    text-underline-offset: ;}
+    
+    list-style: ;
+}
+
+*/
+
+
+body {
+    padding: 40px 10%;
+}
+h1{
+    text-align: center;
+    font-size:60px;
+    font-family:italic ;
+}
+ section:first-of-type{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+}
+section:first-of-type:hover{
+    background-color: red;
+}
+body>div>p,section>p:first-of-type{
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+}
+body>div{
+    margin-top: 50px;
+    padding-top: 20px;
+}
+section:nth-of-type(2) {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+section:nth-of-type(2):hover{
+    background-color: aqua;
+}
+Section:nth-of-type(3){
+    background-color: cyan;
+    margin-top: 50px;
+    padding-bottom: 30px;
+}
+Section{
+    border-top: 1px solid black;
+    padding-top: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+::selection {
+    color: blue;
+    background-color: yellow;
+}
+
+::-moz-selection{
+    color: blue;
+    background-color: yellow;
+}
+Section:nth-of-type(4){
+    margin-top: 100px;
+    border: 25px solid yellow ;
+    padding: 20px;
+    padding-left: 40px;
+}
+ul:first-of-type li:nth-of-type(2){
+  text-decoration: underline;
+  text-decoration-thickness:3px ; 
+  text-underline-offset:3px; 
+}
+ul:first-of-type:hover li:nth-of-type(2){ 
+    text-decoration: line-through;
+    background-color: beige;
+}
+ul:nth-of-type(2){
+    margin-left:-20px;
+    list-style: none;
+}
+ul:nth-of-type(2) li::before{
+    content:"👉🏻";
+    margin-right: 10px;
+}
+ body>div:first-of-type{
+    border: 1px solid black;
+    border-style: dashed;
+    outline: 25px solid yellow;
+    padding-left: 40px;
+}
+ul li:nth-of-type(even){
+    background-color:cyan ;
+}
+div>ol{
+    list-style: upper-roman;
+}
+body div ol li{
+    margin-bottom: 20px;
+}
+Section:nth-of-type(5)>p{
+    margin-bottom: 40px;
+}
+section>div{
+    columns: 3;
+    column-gap:50px;
+}
+Section>div>p{
+margin:0;
+text-indent: 60px;
+}
+Section>div>p:first-of-type{
+    text-indent: 0;
+}
+Section:nth-of-type(6)>p:nth-of-type(2)::first-line{
+    font-size: 44px;
+    line-height: 0.8;
+}
+section blockquote{
+   margin-left: 30px;
+}
+section blockquote,q{
+    color: aqua;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-left: 1px solid blue;
+    }
+    section q{
+        border-right: 10px solid black;
+        margin-right: 10px;
+    }

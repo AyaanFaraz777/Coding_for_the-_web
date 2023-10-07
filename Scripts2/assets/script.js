@@ -1,0 +1,1 @@
+function displaybugatti() {const als=document.getElementById("bugatti");als.style.backgroundColor="red";document.title="change";als.classname="Rocker";}

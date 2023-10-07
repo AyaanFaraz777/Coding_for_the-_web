@@ -1,0 +1,1 @@
+let als = document.getElementByID("bugatti");let ast = document.getElementByID("ferrari");let llc = document.getElementByID("lamborgini");function displaybugatti() {als.style.backgroundColor="red";document.title="change";}

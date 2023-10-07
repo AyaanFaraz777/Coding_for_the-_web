@@ -1,0 +1,34 @@
+<html>
+<head>
+<title> Wikipedia</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="Wikipedia_styles.css" rel="stylesheet" type="text/css">
+</head>
+</head>
+<body>
+<h1> Home page</h1>
+<p>
+Wikipedia is an interactive and resourceful and it paves the way for free information to be accessible to every one. This was the first open source platform.
+<Br> It developed by two people Larry Sanger and Jimmy Wales.
+</p>
+<Br>
+<img src="wikipedia_home_page.jpeg" alt="😎">
+<Br>
+<h2> wikinews</h2>
+<p>
+The typography of the this website is an interactive and in italic.
+</p>
+<Br>
+<img src="wikinews.jpeg" alt="😎">
+<Br>
+<h3> Wikiversity</h3>
+<p>
+This webpage for the university students
+</p>
+<Br>
+<img src="wikiversity.jpeg" alt="😀">
+<Br>
+<img src="wikiversity1.jpeg" alt="😀">
+</body>
+</html>
