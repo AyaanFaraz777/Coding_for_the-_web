@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="author" content="Expanded Metrics">
+    <meta name="description" content="">
+    <meta property="og:title" content=""/>
+    <meta property="og:description" content=""/>
+    
+    <title>D11.E1&thinsp;·&thinsp;CSS Grid</title>
+    
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website"/>
+
+    <link href="assets/defaults+font-face.css" rel="stylesheet" type="text/css">
+    <link href="CSS_TO_EDIT.css" rel="stylesheet" type="text/css">
+
+    <script src="assets/script.js" type="text/javascript" defer></script> 
+
+
+</head>
+    
+<body onload="loadPopupState()">
+
+    
+    <section id="s1">
+
+        <aside>
+            <a href="#s1">            
+            <h2>SECTION 1 (#s1)</h2>
+            <p>Grid-template-columns, Justify-items, Align-items, and Align-content</p>
+            <br><u>Note:</u>The justify-items and align-items properties control how each grid item is laid out within its grid &lsquo;cell&lsquo;: justify-items for the row (horizontal) axis, and align-items for the column (vertical) axis.<br><br>The align-content property controls how the grid &lsquo;tracks&lsquo; are laid out within the overall grid container, along the column (vertical) axis.
+            </a>            
+        </aside>
+
+        <article>
+            <div>Item 1</div>
+            <div>Item 2</div>
+            <div>Item 3</div>
+            <div>Item 4</div>     
+            <div>Item 5</div>
+            <div>Item 6</div>     
+            <div>Item 7</div>       
+            
+            <!-- FOR GRID GUIDES (ABSOLUTELY POSITIONED)-->
+            <span id="grid-guide" class="hidden">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span class="end"></span>
+                <span class="bottom"></span>
+                <span class="bottom"></span>
+                <span class="bottom"></span>
+                <span class="end bottom"></span>
+            </span>
+        </article>
+
+        <aside>
+            <fieldset>
+                <p>Justify-Items:</p>
+                <div>
+                  <input type="radio" id="jistart" name="ji" value="start"/>
+                  <label for="jistart">start</label>
+                </div>
+              
+                <div>
+                  <input type="radio" id="jiend" name="ji" value="end" />
+                  <label for="jiend">end</label>
+                </div>
+                <div>
+                  <input type="radio" id="jicenter" name="ji" value="center" />
+                  <label for="jicenter">center</label>
+                </div>
+                <div>
+                    <input type="radio" id="jistretch" name="ji" value="stretch" checked/>
+                    <label for="jistretch">stretch</label>
+                </div>     
+        
+            </fieldset>
+
+            <fieldset>
+                <p>Align-Items:</p>
+                <div>
+                  <input type="radio" id="aistart" name="ai" value="start"/>
+                  <label for="aistart">start</label>
+                </div>
+              
+                <div>
+                  <input type="radio" id="aiend" name="ai" value="end" />
+                  <label for="aiend">end</label>
+                </div>
+                <div>
+                  <input type="radio" id="aicenter" name="ai" value="center" />
+                  <label for="aicenter">center</label>
+                </div>
+                <div>
+                    <input type="radio" id="aistretch" name="ai" value="stretch" checked/>
+                    <label for="aistretch">stretch</label>
+                </div>  
+                <div>
+                    <input type="radio" id="aibaseline" name="ai" value="baseline"/>
+                    <label for="aibaseline">baseline</label>
+                </div>                     
+            </fieldset>          
+            
+            <fieldset>
+                <p>Align-Content:</p>
+                <div>
+                  <input type="radio" id="acstart" name="ac" value="start"/>
+                  <label for="acstart">start</label>
+                </div>
+              
+                <div>
+                  <input type="radio" id="acend" name="ac" value="end" />
+                  <label for="acend">end</label>
+                </div>
+                <div>
+                  <input type="radio" id="accenter" name="ac" value="center" />
+                  <label for="accenter">center</label>
+                </div>
+                <div>
+                    <input type="radio" id="acstretch" name="ac" value="stretch" checked/>
+                    <label for="acstretch">stretch</label>
+                </div>  
+               
+            </fieldset>   
+            
+            <fieldset>
+                <input type="checkbox" id="checkGrid" onClick="showGrid()" />
+                <label for="checkGrid">Grid guides</label>
+            </fieldset>
+            
+        </aside>
+    </section>
+
+    <section id="s2">
+
+        <aside>
+            <a href="#s2">            
+            <h2>SECTION 2 (#s2)</h2>
+            <p>Fractional units, Grid-column-start & Grid-column-end</p>
+            <br><u>Note:</u> Fractional units (fr) take up whatever leftover space is remaining after the &lsquo;hard&rsquo;, specific values have been accounted for.<br><br>
+            Grid items can span multiple rows or columns using the grid column-start / -end and grid-row-start / end properties.
+            </a>
+        </aside>
+
+        <article>
+            <div>Item 1<br>(spans 2 columns)</div>
+            <div>Item 2<br>(starts at column 4)</div>
+            <div>Item 3</div>
+            <div>Item 4</div>     
+            <div>Item 5</div>
+            <div>Item 6<br>(column 1 to 5; row 3 to 5)</div>
+
+            <div>Item 7<br>(column 5 to 6; row 3 to 5)</div>   
+
+            <!-- FOR GRID GUIDES (ABSOLUTELY POSITIONED)-->
+            <span id="grid-guide2" class="hidden">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span class="end"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span class="end"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span class="end"></span>
+                <span class="bottom"></span>
+                <span class="bottom"></span>
+                <span class="bottom"></span>
+                <span class="bottom"></span>
+                <span class="end bottom"></span>
+            </span>                            
+
+        </article>
+
+        <aside>
+            <fieldset>
+                <input type="checkbox" id="checkGrid2" onClick="showGrid2()" />
+                <label for="checkGrid2">Grid guides</label>
+            </fieldset>
+                        
+        </aside>
+    </section>    
+
+    <section id="s3">
+
+        <aside>
+            <a href="#s3">            
+            <h2>SECTION 3 (#s3)</h2>
+            <p>Repeat, Auto-Fill, MinMax, and Justify-Content</p>
+            <br><u>Note:</u> &lsquo;repeat&rsquo; is used to declare repeated columns (or rows). Apart from declaring a fixed number of columns, &lsquo;repeat&rsquo; can also be declared with the value &lsquo;auto-fill&rsquo;, which increases or decreases the number of columns according to the space that's available in the grid container &mdash; and subject to the column width that's specified. If there's space for a new column, it gets added to the container.
+            <br><br>You'll usually get some extra space in the grid container if you use repeat or autofill with a pixel unit. This can be further handled by either setting justify-content on the grid container (which positions the grid tracks as a whole along the row axis), or by declaring the length unit as minmax value (first unit is minimum, second unit is maximum, usually set to 1fr to ensure it fills the available space).
+            </a>
+        </aside>
+
+        <article>
+            <div>Item 1</div>
+            <div>Item 2</div>
+            <div>Item 3</div>
+            <div>Item 4</div>     
+            <div>Item 5</div>
+            <div>Item 6</div>   
+            <div>Item 7</div>
+            <div>Item 8</div>   
+            <div>Item 9</div>            
+        </article>
+
+        <aside>
+            <fieldset>
+                <p>Grid-template-columns:</p>
+                <div>
+                    <input type="radio" id="rpt" name="gtc" value="repeat(6,150px)" checked/>
+                    <label for="rpt">repeat(6, 150px)</label>
+                </div>
+            
+                <div>
+                    <input type="radio" id="af" name="gtc" value="repeat(auto-fill,150px)">
+                    <label for="af">repeat(auto-fill, 150px)</label>
+                </div>
+                <div>
+                    <input type="radio" id="afmm" name="gtc" value="repeat(auto-fill,minmax(150px,1fr))" />
+                    <label for="afmm">repeat(auto-fill, minmax(150px, 1fr))</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <p>Justify-Content:</p>
+                <div>
+                    <input type="radio" id="jcstart" name="jc" value="start" checked/>
+                    <label for="jcstart">start</label>
+                </div>
+                <div>
+                    <input type="radio" id="jcend" name="jc" value="end"/>
+                    <label for="jcend">end</label>
+                </div>
+                <div>
+                    <input type="radio" id="jccenter" name="jc" value="center"/>
+                    <label for="jccenter">center</label>
+                </div>
+                <div>
+                    <input type="radio" id="jcstretch" name="jc" value="space-fill"/>
+                    <label for="jcstretch">stretch</label>
+                </div>
+                <div>
+                    <input type="radio" id="jcspace-around" name="jc" value="space-around"/>
+                    <label for="jcspace-around">space-around</label>
+                </div>
+                <div>
+                    <input type="radio" id="jcspace-between" name="jc" value="space-between"/>
+                    <label for="jcspace-between">space-between</label>
+                </div>
+                <div>
+                    <input type="radio" id="jcspace-evenly" name="jc" value="space-evenly">
+                    <label for="jcspace-evenly">space-evenly</label>
+                </div>                
+                                                                             
+            </fieldset>            
+        </aside>
+
+    </section>    
+
+    <section id="s4">
+
+        <aside>
+            <a href="#s4">            
+            <h2>SECTION 4 (#s4)</h2>
+            <p>Grid-template areas + Grid-area</p>
+            <br><u>Note:</u> Grid-template-areas are defined in the grid container (names of the areas are up to you &mdash; the syntax provides the visual structure of the grid). Place grid items using the &lsquo;grid-area&rsquo; property. Column and row measures can still be set on the grid container.
+            </a>
+        </aside>
+
+        <article>
+            <div>Head</div>
+            <div>H</div>
+            <div>Nav</div>
+            <div>Main</div>
+            <div>Foot1</div>  
+            <div>Foot2</div>     
+            <div>Foot3</div>     
+
+        </article>
+
+        <aside>
+        </aside>
+    </section>      
+
+
+    <!-- POPUP ------------------------------------------------------------------------ -->
+    <button id="openPopup" onclick="showPopup()">?</button>
+    <div id="popupCover" onclick="hidePopup()"></div>
+
+    <div id="popup">
+        
+        <h2>CSS Grid</h2>
+        <p>For this exercise, you'll have to edit both this HTML document and the CSS file named "CSS_TO_EDIT.css" (in the same root folder as this HTML file), making the changes mentioned below. 
+        <br><br>
+        First, take a look at the broad <a href="assets/dom_structure.txt" target="_blank">DOM structure for this document</a>.<br><br>
+        
+        There are four top-level &lt;section&gt; elements in this HTML document, tagged with IDs #s1 to #s4. In each section there's an &lt;aside&gt; then an &lt;article&gt;, and followed by an &lt;aside&gt; again.<br><br>
+        
+        The &lt;article&gt; elements will be our <strong>grid containers</strong> for this exercise, and the nested &lt;div&gt; elements within this &lt;article&gt; are going to be the <strong>grid items</strong> that you're going to style.<br><br>
+ 
+        <hr>
+        <p><u>General styling</u>
+        <ol>
+            <li>Start by declaring display: grid; on all articles. This will activate the Grid layout for these containers.
+            </li>            
+            <li>Each grid item (the div directly nested within each article) needs centrally-aligned text, a margin of 2px, and a padding of 5px.</li>
+            <li>Once you're done with the above, observe how the grid-items appear within all the sections.</li>
+        </ol>
+        </p>
+        <br>
+
+        <hr>
+        <p><u>Section 1 (#s1):</u>
+        <ol>
+            <li>In #s1, the grid container (article) needs 4 columns of equal size. Use the CSS property &lsquo;grid-template-columns&rsquo; with a value of &lsquo;repeat(4, 1fr)&rsquo;to get this &mdash; this is equivalent to declaring &lsquo;grid-template-columns: 1fr 1fr 1fr 1fr;&rsquo;.
+            </li>            
+            <li>Now, go to the HTML markup. Within the second aside element in this section, there are three fieldsets containing radio buttons: one fieldset that toggles between all the &lsquo;justify-items&rsquo; property values for the grid container; and one that toggles between all the &lsquo;align-items&rsquo; values, and a last one to toggle between all the &lsquo;align-content&rsquo; values. Add the correct values to each radio input's &lsquo;value&rsquo; attribute, to activate the radio buttons.</li>
+            <li>In the markup of this section's article, there is an absolutely-positioned, hidden element with the ID &lsquo;grid-guide&rsquo;, which has its display set to none. Set its display to grid, and give it the same grid-template-columns as the article.</li>              
+            <li>Once you've done the above, go back to the webpage and observe how changing each property (justify-items, align-items, and align-content) affects the grid items within the container. You can also toggle the grid guide for your reference with the checkbox, to see the grid &lsquo;cells&rsquo; that are created for each item.</li>
+        </ol>
+        </p>
+        <br>
+
+        <hr>
+        <p><u>Section 2 (#s2):</u><br>
+            <ol>
+                <li>In this section, make the article into a 5-column grid; the first 2 columns need to be 8rem, and the remaining to be 1fr each. Take a look at how the columns have been arranged.</li>  
+                <li>Now, declare the rows on this article as well: 4 equally-tall rows. You could use the repeat() notation for this. Take a look at how the grid items have been arranged now.</li>            
+                <li>In the markup of this section's article as well, there's a hidden element with the ID &lsquo;grid-guide2&rsquo;, which has its display set to none. Set its display to grid, and give it the same grid-template-columns and grid-template-rows as the article in this section.</li>
+                <li>Once you've done the above, try toggling the grid guides on and off (via the checkbox) on the webpage, to see the grid lines in this article.</li>      
+                <li>Next, style individual grid items to take up different areas/spots in the grid: Target the first grid item (the first nested div inside the article), and set &lsquo;grid-column-start&rsquo; property to &lsquo;span 2&rsquo;.</li>
+                <li>Similarly, the second grid item should have its &lsquo;grid-column-start&rsquo; set to &lsquo;4&rsquo;. Take a look at the layout changes that have been implemented with these declarations.</li>
+                <li>The 6th grid item should have its &lsquo;grid-column-start&rsquo; at 1, and its &lsquo;grid-column-end&rsquo; at 5. It should also start at row 3, and end at row 5.</li>  
+                <li>On the last grid item, use the shorthand properties &lsquo;grid-column&rsquo; and &lsquo;grid-row&rsquo; to define the starting and end values of its columns and rows: 5 / 6, and 3 / 5, respectively.</li>                
+            </ol>            
+
+        </p>
+        <br>
+    
+        <hr>
+        <p><u>Section 3 (#s3):</u><br>
+            <ol>
+                <li>Begin this section by giving the grid container (article) a set of 6 repeating columns of 150px each. Observe the layout with this declaration, especially on resizing the window to a narrower size.</li> 
+                <li>Now head over to the HTML markup, to the second aside in this section, and to the first fieldset within it (&lsquo;grid-template-columns&rsquo;). The three radio buttons here should toggle the column-repeat styles for the grid container. The first value should be the same as what you've just declared in the CSS; the next two radio inputs need a value of &lsquo;repeat(auto-fill, 150px)&rsquo;, and &lsquo;repeat(auto-fill, minmax(150px, 1fr))&rsquo;, to activate them.</li>
+                <li>Once you're done with the above, go back to the webpage and toggle between each column-repeat option to see how the layout shifts, especially when resizing the browser to a narrower size.</li>
+                <li>Last, edit the second fieldset (&lsquo;justify-content&rsquo;) in the aside; add the different values to the radio input attribute, to correspond with all the options available for justify-content in the Grid spec.</li>
+                <li>Observe how the justify-content property options interact with each column-repeat option.</li>
+            </ol>
+        </p>
+        <br>
+
+        <hr>
+
+        <p><u>Section 4 (#s4):</u><br>
+            <ol>
+                <li>In section 4, define the grid in an alternate way: using the &lsquo;grid-template-areas&rsquo; property. The value can take on the syntax like:
+<pre>"  .   head    .  "
+"  .     .     .  "
+"  h     .     .  "
+" nav  main  main "
+"  .     .     .  "
+"foot1 foot2 foot3";
+</pre> This will visually define your main grid areas. Once you've added this, check out the webpage to see how the grid has been created.</li>
+                <li>Now place the first grid-item in the &lsquo;head&rsquo; area defined above, by declaring &lsquo;grid-area: head&rsquo; for the item.</li>
+                <li>Place the second grid-item in the &lsquo;h&rsquo; area by declaring &lsquo;grid-area: h&rsquo; for the item.</li>
+                <li>Similarly, the third grid item needs to go in the &lsquo;nav&rsquo; area, the fourth needs to go in the &lsquo;main&rsquo; area, and the 5th, 6th, and 7th need to go in &lsquo;foot1&rsquo;, &lsquo;foot2&rsquo;, and &lsquo;foot3&rsquo;, respectively. Go back to the webpage to see how the layout has taken shape.</li>
+                <li>Add some padding to the grid container: top and bottom of 2.5rem, left and right of 2rem.</li>
+                <li>Define rows for the grid container: 6 rows of auto, 5rem, auto, 1fr, 2rem, and auto, respectively.</li>
+                <li>Finally, add a column-gap of 1.5rem, and a row-gap of 1rem to the grid container.</li>
+            </ol>
+        </p>
+        <br>
+
+    </div>
+
+    <a href="#s1"><button id="s1btn">s1</button></a>
+    <a href="#s2"><button id="s2btn">s2</button></a>
+    <a href="#s3"><button id="s3btn">s3</button></a>
+    <a href="#s4"><button id="s4btn">s4</button></a>    
+
+</body>    
