@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Big Caslon';
+    src: url('hinted-BigCaslon-Medium.eot');
+    src: url('hinted-BigCaslon-Medium.eot?#iefix') format('embedded-opentype'),
+        url('hinted-BigCaslon-Medium.woff2') format('woff2'),
+        url('hinted-BigCaslon-Medium.woff') format('woff'),
+        url('hinted-BigCaslon-Medium.svg#BigCaslon-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+

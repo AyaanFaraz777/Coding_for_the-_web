@@ -1,0 +1,31 @@
+// JAVASCRIPT COMES HERE
+// --------------------------------------------------------
+
+const tts= document.getElementById("text-style");
+const slt= document.getElementById("font-style");
+const nls= document.getElementById("font-size");
+const mts= document.querySelector("#outbox");
+
+function textStyle(){
+document.getElementById("Intro").innerHTML= document.getElementById("text-style").value;
+}
+
+
+function monoSpace(){
+document.getElementById("Intro1").style.fontSize = document.getElementById("font-style").value + "px";
+}
+
+
+function fontSize(){
+document.getElementById("Intro2").style.width = document.getElementById("font-size").value + "px";
+}
+function outboxSize(){
+document.getElementById("Intro3").style.width = document.getElementById("outbox").value + "px";
+function range(start, end) {
+    var ans = [];
+    for (let i = start; i <= end; i++) {
+        ans.push(i);
+    }
+    return ans;
+   }
+ }

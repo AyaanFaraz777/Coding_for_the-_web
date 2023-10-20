@@ -1,0 +1,1 @@
+const box= document.getElementById("box");const xls= document.getElementsByName("radio-button1");var x;for(x=0; x<xls.length;x++){xls[x].addEventListener("click", function(){	box.style.backgroundColor = this.value;});}

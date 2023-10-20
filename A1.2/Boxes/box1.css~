@@ -1,0 +1,1 @@
+#box{width:100px;height:100px;position:fixed;top:0;right:0;background-color:red;}

@@ -1,0 +1,27 @@
+DOM STRUCTURE FOR D10.E1:
+-------------------------
+
+BODY 
+|
+|------	SECTION (#s1)
+|	|
+|	|------	ASIDE ...
+|	|
+|	|------ ARTICLE
+|	|	|------ DIV (Item 1)
+|	|	|------ DIV (Item 2)
+|	|	|------ DIV (Item 3)
+|	|	------- DIV (Item 4)
+|	|	...
+|	|	
+|	------- ASIDE ...
+|
+|
+|------	SECTION (#s2)
+|	|
+|	|------	ASIDE ...
+|	|------	ARTICLE ...
+|	------- ASIDE ...
+|
+...
+/BODY

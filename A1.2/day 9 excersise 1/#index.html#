@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+            
+    <head>       
+        <meta charset="utf-8">
+        <meta name="author" content="learn.expandedmetrics.com">
+        <meta name="description" content=" ">
+        <meta name="keywords" content=" ">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+        <title>Page Title Goes Here</title>
+
+        <!-- Socials -->
+        <meta property="og:title" content=" " />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content=" " />
+        <meta property="og:image" content="assets/ .jpg" />
+        <meta property="og:url" content=" .com" />
+        <meta name="twitter:title" content=" ">
+        <meta name="twitter:description" content=" ">
+        <meta name="twitter:image" content="assets/ .jpg">
+        <meta name="twitter:card" content="assets/ .jpg">
+
+        <!-- CSS -->
+        <link href="assets/style.css" rel="stylesheet" type="text/css">
+                
+        <!--JavaScript -->
+        <script type="text/javascript" src="assets/script.js" defer></script> 
+
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="assets/favicon.ico"> 
+
+    </head>       
+
+    <body>
+    <div id="Intro"></div>
+		<input type="text" id="text-style" oninput="textStyle()">
+<Br>
+<label for="text-style">
+<Br>
+<div id="Intro1">test text 123</div>
+<input type="number" id="font-style" oninput="monoSpace()">
+<Br>
+<label for="font-style"> enter number</label>
+<Br>
+<div id="Intro2"></div>
+<input type="range" id="font-size" value="px" onchange="fontSize()">
+<Br>
+<label for="font-size">range</label>
+<div id="Intro3"></div>
+
+
+
+    </body>
+</html>

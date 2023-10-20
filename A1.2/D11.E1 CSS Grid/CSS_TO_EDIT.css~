@@ -1,0 +1,127 @@
+/* GRID CONTAINER (ARTICLE) AND GRID ITEMS (ARTICLE > DIV) */
+/* ----------------------------------------------------- */
+
+article {
+    color: white;
+    padding: 2px;
+    display:grid;
+   }
+
+article > div {
+    margin: 2px;
+    margin: 2px;
+    padding:5px;
+}
+
+
+/* SECTION 1 */
+/* ----------------------------------------------------- */
+#s1 article > div {
+    background-color: #024873;
+}
+
+#grid-guide {
+    display: grid;
+    grid-template-columns:repeat(4,1fr);
+}
+#s1 article {
+grid-template-columns:repeat(4,1fr);
+}
+
+
+/* SECTION 2 */
+/* ----------------------------------------------------- */
+#s2 article > div {
+    background-color: #E3371E;
+}
+
+#grid-guide2 {
+    display: grid;
+    grid-template-columns:repeat(2,8rem) repeat(3,1fr);
+    grid-template-rows:repeat(4,1fr);
+}
+#s2 article{
+grid-template-columns:5px;
+}
+#s2 article{
+grid-template-columns:repeat(2,8rem) repeat(3,1fr);
+grid-template-rows:repeat(4,1fr);
+}
+#s2 div:first-of-type{
+grid-column-start:span 2;
+}
+#s2 div:nth-of-type(2){
+grid-column-start:4;
+}
+#s2 div:nth-of-type(6){
+grid-column-start:1;
+grid-column-end: 5;
+grid-row:3/5;
+}
+#s2 div:last-of-type{
+grid-column-start:1;
+grid-column-end: 5;
+grid-row:3/5;
+grid-column:5/6;
+}
+
+/* SECTION 3 */
+/* ----------------------------------------------------- */
+#s3 article > div {
+    background-color: #005C53;}
+#s3 article{
+    display:grid;
+    grid-template-columns:repeat(6,150px);
+    }
+
+/* SECTION 4 */
+/* ----------------------------------------------------- */
+#s4 article > div {
+    background-color: #EDAA25;
+    }
+#s4 article {
+    grid-template-areas:
+    "  .   head    .  "
+"  .     .     .  "
+"  h     .     .  "
+" nav  main  main "
+"  .     .     .  "
+"foot1 foot2 foot3";
+}
+#s4 article div:nth-of-type(1){
+grid-area:head;}
+#s4 article div:nth-of-type(2){
+    grid-area:h;
+    }
+#s4 article div:nth-of-type(3){
+grid-area:nav;
+
+}
+#s4 article div:nth-of-type(4){
+grid-area:main;
+}
+#s4 article div:nth-of-type(5){
+grid-area: foot1;
+}
+#s4 article div:nth-of-type(6){
+grid-area:foot2;
+}
+#s4 article div:nth-of-type(7){
+grid-area:foot3;
+}
+#s4 article{
+    padding-bottom:2.5rem;
+    padding-top:2.5rem;
+    padding-left:2rem;
+    padding-right:2rem;
+}
+#s4 article{
+    grid-column-gap:1.5rem;
+    grid-row-gap:1rem;
+    grid-template-rows:6,5rem;
+    grid-template-rows:1fr,2rem;
+    column-gap:1.5rem;
+    row-gap:1rem;
+}
+
+
