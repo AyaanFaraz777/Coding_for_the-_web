@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Segoe UI';
+    src: url('37751315673.ttf/SegoeUI.eot');
+    src: url('37751315673.ttf/SegoeUI.eot?#iefix') format('embedded-opentype'),
+        url('37751315673.ttf/SegoeUI.woff2') format('woff2'),
+        url('37751315673.ttf/SegoeUI.woff') format('woff'),
+        url('37751315673.ttf/SegoeUI.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
