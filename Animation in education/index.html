@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Video Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(50px); }
+            50% { transform: translateY(-200px) translateX(-50px); }
+            75% { transform: translateY(-100px) translateX(100px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 90%;
+            max-width: 1200px;
+            backdrop-filter: blur(10px);
+        }
+
+        .auth-section, .app-section {
+            display: none;
+        }
+
+        .auth-section.active, .app-section.active {
+            display: block;
+        }
+
+        .auth-container {
+            display: flex;
+            min-height: 500px;
+        }
+
+        .auth-sidebar {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .auth-sidebar h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .auth-sidebar p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .auth-form {
+            flex: 1;
+            padding: 60px 40px;
+        }
+
+        .auth-form h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .switch-auth {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .switch-auth a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .app-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .app-header h1 {
+            font-size: 1.8em;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .app-content {
+            padding: 40px;
+        }
+
+        .video-controls {
+            margin-bottom: 30px;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .control-group select, .control-group input[type="range"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .video-canvas {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: #000;
+        }
+
+        .range-value {
+            display: inline-block;
+            margin-left: 10px;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation" id="bgAnimation"></div>
+
+    <div class="container">
+        <!-- Login Section -->
+        <div class="auth-section active" id="loginSection">
+            <div class="auth-container">
+                <div class="auth-sidebar">
+                    <h1>✨ Generative Video Studio</h1>
+                    <p>Create stunning animated videos with our AI-powered generative video platform. Login to start creating mesmerizing visual experiences.</p>
+                </div>
+                <div class="auth-form">
+                    <h2>Welcome Back</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="loginEmail" required>
+                            <div class="error-message" id="loginEmailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="loginPassword" required>
+                            <div class="error-message" id="loginPasswordError"></div>
+                        </div>
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+                    <div class="switch-auth">
+                        Don't have an account? <a id="showSignup">Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup Section -->
+        <div class="auth-section" id="signupSection">
+            <div class="auth-container">
+                <div class="auth-sidebar">
+                    <h1>🎨 Join Us</h1>
+                    <p>Start your creative journey today. Sign up to unlock unlimited generative video creation and bring your imagination to life.</p>
+                </div>
+                <div class="auth-form">
+                    <h2>Create Account</h2>
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="signupName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="signupEmail" required>
+                            <div class="error-message" id="signupEmailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="signupPassword" required>
+                            <div class="error-message" id="signupPasswordError"></div>
+                        </div>
+                        <button type="submit" class="btn">Sign Up</button>
+                    </form>
+                    <div class="switch-auth">
+                        Already have an account? <a id="showLogin">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- App Section -->
+        <div class="app-section" id="appSection">
+            <div class="app-header">
+                <h1>🎬 Generative Video Studio</h1>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+            <div class="app-content">
+                <div class="video-controls">
+                    <h3 style="margin-bottom: 20px; color: #333;">Video Controls</h3>
+                    <div class="control-group">
+                        <label>Animation Style</label>
+                        <select id="animationStyle">
+                            <option value="waves">Waves</option>
+                            <option value="particles">Particles</option>
+                            <option value="spiral">Spiral</option>
+                            <option value="geometric">Geometric</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Speed <span class="range-value" id="speedValue">5</span></label>
+                        <input type="range" id="speed" min="1" max="10" value="5">
+                    </div>
+                    <div class="control-group">
+                        <label>Complexity <span class="range-value" id="complexityValue">5</span></label>
+                        <input type="range" id="complexity" min="1" max="10" value="5">
+                    </div>
+                </div>
+                <canvas class="video-canvas" id="videoCanvas" width="800" height="450"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize background animation
+        const bgAnimation = document.getElementById('bgAnimation');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.width = Math.random() * 60 + 20 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+            bgAnimation.appendChild(particle);
+        }
+
+        // User storage (in-memory)
+        const users = {};
+        let currentUser = null;
+
+        // DOM elements
+        const loginSection = document.getElementById('loginSection');
+        const signupSection = document.getElementById('signupSection');
+        const appSection = document.getElementById('appSection');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Navigation
+        showSignup.addEventListener('click', () => {
+            loginSection.classList.remove('active');
+            signupSection.classList.add('active');
+        });
+
+        showLogin.addEventListener('click', () => {
+            signupSection.classList.remove('active');
+            loginSection.classList.add('active');
+        });
+
+        // Signup
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const emailError = document.getElementById('signupEmailError');
+            const passwordError = document.getElementById('signupPasswordError');
+
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+
+            if (users[email]) {
+                emailError.textContent = 'Email already exists';
+                emailError.style.display = 'block';
+                return;
+            }
+
+            if (password.length < 6) {
+                passwordError.textContent = 'Password must be at least 6 characters';
+                passwordError.style.display = 'block';
+                return;
+            }
+
+            users[email] = { name, password };
+            alert('Account created successfully! Please login.');
+            signupForm.reset();
+            signupSection.classList.remove('active');
+            loginSection.classList.add('active');
+        });
+
+        // Login
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const emailError = document.getElementById('loginEmailError');
+            const passwordError = document.getElementById('loginPasswordError');
+
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+
+            if (!users[email]) {
+                emailError.textContent = 'Email not found';
+                emailError.style.display = 'block';
+                return;
+            }
+
+            if (users[email].password !== password) {
+                passwordError.textContent = 'Incorrect password';
+                passwordError.style.display = 'block';
+                return;
+            }
+
+            currentUser = users[email];
+            loginForm.reset();
+            loginSection.classList.remove('active');
+            appSection.classList.add('active');
+            startGenerativeVideo();
+        });
+
+        // Logout
+        logoutBtn.addEventListener('click', () => {
+            currentUser = null;
+            appSection.classList.remove('active');
+            loginSection.classList.add('active');
+            stopGenerativeVideo();
+        });
+
+        // Generative Video
+        const canvas = document.getElementById('videoCanvas');
+        const ctx = canvas.getContext('2d');
+        let animationId;
+        let time = 0;
+
+        const speedSlider = document.getElementById('speed');
+        const complexitySlider = document.getElementById('complexity');
+        const styleSelect = document.getElementById('animationStyle');
+        const speedValue = document.getElementById('speedValue');
+        const complexityValue = document.getElementById('complexityValue');
+
+        speedSlider.addEventListener('input', (e) => {
+            speedValue.textContent = e.target.value;
+        });
+
+        complexitySlider.addEventListener('input', (e) => {
+            complexityValue.textContent = e.target.value;
+        });
+
+        function drawWaves() {
+            const speed = parseInt(speedSlider.value);
+            const complexity = parseInt(complexitySlider.value);
+            
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < complexity; i++) {
+                ctx.beginPath();
+                ctx.strokeStyle = `hsl(${(time + i * 30) % 360}, 70%, 50%)`;
+                ctx.lineWidth = 3;
+
+                for (let x = 0; x < canvas.width; x += 5) {
+                    const y = canvas.height / 2 + Math.sin(x * 0.01 + time * 0.02 * speed + i) * (50 + i * 10);
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+        }
+
+        function drawParticles() {
+            const speed = parseInt(speedSlider.value);
+            const complexity = parseInt(complexitySlider.value);
+            
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < complexity * 10; i++) {
+                const angle = time * 0.01 * speed + i * 0.5;
+                const radius = 100 + Math.sin(time * 0.02 + i) * 50;
+                const x = canvas.width / 2 + Math.cos(angle) * radius;
+                const y = canvas.height / 2 + Math.sin(angle) * radius;
+
+                ctx.beginPath();
+                ctx.fillStyle = `hsl(${(time + i * 10) % 360}, 70%, 50%)`;
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function drawSpiral() {
+            const speed = parseInt(speedSlider.value);
+            const complexity = parseInt(complexitySlider.value);
+            
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let j = 0; j < complexity; j++) {
+                ctx.beginPath();
+                ctx.strokeStyle = `hsl(${(time + j * 40) % 360}, 70%, 50%)`;
+                ctx.lineWidth = 2;
+
+                for (let i = 0; i < 200; i++) {
+                    const angle = i * 0.1 + time * 0.01 * speed + j * 0.5;
+                    const radius = i * 2;
+                    const x = canvas.width / 2 + Math.cos(angle) * radius;
+                    const y = canvas.height / 2 + Math.sin(angle) * radius;
+
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+        }
+
+        function drawGeometric() {
+            const speed = parseInt(speedSlider.value);
+            const complexity = parseInt(complexitySlider.value);
+            
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < complexity; i++) {
+                ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate(time * 0.01 * speed + i * 0.5);
+                
+                ctx.strokeStyle = `hsl(${(time + i * 40) % 360}, 70%, 50%)`;
+                ctx.lineWidth = 2;
+                ctx.strokeRect(-50 - i * 20, -50 - i * 20, 100 + i * 40, 100 + i * 40);
+                
+                ctx.restore();
+            }
+        }
+
+        function animate() {
+            const style = styleSelect.value;
+
+            switch (style) {
+                case 'waves': drawWaves(); break;
+                case 'particles': drawParticles(); break;
+                case 'spiral': drawSpiral(); break;
+                case 'geometric': drawGeometric(); break;
+            }
+
+            time++;
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function startGenerativeVideo() {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            animate();
+        }
+
+        function stopGenerativeVideo() {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            time = 0;
+        }
+    </script>
+</body>
+</html>
